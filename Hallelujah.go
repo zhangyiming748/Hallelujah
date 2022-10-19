@@ -17,16 +17,17 @@ type Img struct {
 	Size   string `json:"size"`
 }
 
-func Hallelujah() Img {
+func Hallelujah() (Img, error) {
 	var img Img
 	b := apifox()
 	err := json.Unmarshal(b, &img)
 	if err != nil {
 		log.Debug.Println(err)
+		return Img{}, err
 	} else {
 		log.Info.Println("解析到结构体")
 	}
-	return img
+	return img, nil
 }
 func writeAll(fname, content string) {
 	f, err := os.OpenFile(fname, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0776)

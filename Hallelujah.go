@@ -29,6 +29,7 @@ func Hallelujah() (Img, error) {
 	}
 	return img, nil
 }
+
 func writeAll(fname, content string) {
 	f, err := os.OpenFile(fname, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0776)
 	if err != nil {
@@ -42,8 +43,9 @@ func writeAll(fname, content string) {
 		log.Info.Printf("写入%d个字节", n)
 	}
 }
+
 func apifox() []byte {
-	url := "https://api.jrsgslb.cn/cos/url.php?return=json"
+	url := "http://api.jrsgslb.cn/cos/url.php?return=json"
 	method := "GET"
 
 	client := &http.Client{}
